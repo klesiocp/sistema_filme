@@ -1,0 +1,27 @@
+descompactar o arquivo => k8s_cluster.tar.gz
+Ele vai gerar uma pasta k8s_cluster com 3 subdiretorios:
+cert-news    => Simulando a Certificação
+prod-news    => Simulando a Produção
+rotten-potatoes => Sistema de Filmes
+
+Obs: Com o nginx-ingress.yaml já rodando(que só se faz uma vez).
+
+cd rotten-potatoes/k8s
+kubectl apply -f ns-filmes.yaml
+kubectl get ns
+
+kubectl apply -f ingress.yaml
+kubectl get ingress --namespace=ns-filmes
+
+
+kubectl apply -f deployment.yaml
+kubectl get svc --namespace=ns-filmes
+kubectl get pods --namespace=ns-filmes
+
+Preparando o linux.
+===================
+sudo vim /etc/hosts
+127.0.0.1 localhost keke cert.news.com.br prod.news.com.br filmes.com.br
+
+Deve ficar desse jeito
+
